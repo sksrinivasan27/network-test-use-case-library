@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keysight — Commercial Accounts Use Case Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: rgba(0,0,0,0.09);
+  --border-strong: rgba(0,0,0,0.18);
+  --text: #1a1a18;
+  --text-muted: #6b6b65;
+  --text-hint: #9b9b93;
+  --blue: #1a4fa0;
+  --blue-light: #e8eef9;
+  --blue-mid: #3a6fd8;
+  --teal: #0f6e56;
+  --teal-light: #e1f5ee;
+  --purple: #534ab7;
+  --purple-light: #eeedfe;
+  --amber: #854f0b;
+  --amber-light: #faeeda;
+  --coral: #993c1d;
+  --coral-light: #faece7;
+  --green: #3b6d11;
+  --green-light: #eaf3de;
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* ── Header ── */
+header {
+  border-bottom: 0.5px solid var(--border-strong);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--blue);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-mark svg { width: 18px; height: 18px; fill: white; }
+.logo-text { font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
+.logo-text span { color: var(--text-muted); font-weight: 300; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+
+/* ── Buttons ── */
+button {
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  height: 34px;
+  padding: 0 14px;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+button:hover { background: var(--surface2); }
+button:active { transform: scale(0.98); }
+.btn-primary {
+  background: var(--blue);
+  color: white;
+  border-color: var(--blue);
+  font-weight: 500;
+}
+.btn-primary:hover { background: #153f85; border-color: #153f85; }
+.btn-sm { height: 28px; font-size: 12px; padding: 0 10px; }
+
+/* ── Hero ── */
+.hero {
+  padding: 48px 0 36px;
+  border-bottom: 0.5px solid var(--border);
+  margin-bottom: 36px;
+}
+.hero-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  margin-bottom: 10px;
+  font-family: 'DM Mono', monospace;
+}
+.hero-title {
+  font-size: 34px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.hero-title strong { font-weight: 500; }
+.hero-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* ── Stats ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+}
+.stat-label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-hint);
+  margin-bottom: 6px;
+}
+.stat-val { font-size: 26px; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ── Section heading ── */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+/* ── Domain cards ── */
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.domain-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.domain-card:hover { border-color: var(--border-strong); }
+.domain-card.active {
+  border: 1.5px solid var(--blue);
+  background: var(--blue-light);
+}
+.domain-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  margin-bottom: 10px;
+  background: var(--surface2);
+}
+.domain-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.domain-count { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.domain-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 400;
+  border: 0.5px solid transparent;
+}
+.tag-blue { background: var(--blue-light); color: var(--blue); border-color: rgba(26,79,160,0.15); }
+.tag-teal { background: var(--teal-light); color: var(--teal); border-color: rgba(15,110,86,0.15); }
+.tag-purple { background: var(--purple-light); color: var(--purple); border-color: rgba(83,74,183,0.15); }
+.tag-amber { background: var(--amber-light); color: var(--amber); border-color: rgba(133,79,11,0.15); }
+.tag-coral { background: var(--coral-light); color: var(--coral); border-color: rgba(153,60,29,0.15); }
+.tag-green { background: var(--green-light); color: var(--green); border-color: rgba(59,109,17,0.15); }
+
+/* ── Filter bar ── */
+.filter-bar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.filter-label { font-size: 12px; color: var(--text-muted); margin-right: 2px; }
+.chip {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  border: 0.5px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-muted);
+}
+.chip:hover { background: var(--surface2); color: var(--text); }
+.chip.active { background: var(--blue); color: white; border-color: var(--blue); font-weight: 500; }
+
+/* ── Search ── */
+.search-row { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; }
+input[type=text] {
+  font-family: 'DM Sans', sans-serif;
+  height: 36px;
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 0 14px;
+  font-size: 14px;
+  background: var(--surface);
+  color: var(--text);
+  flex: 1;
+  max-width: 320px;
+  outline: none;
+}
+input[type=text]:focus { border-color: var(--blue-mid); }
+
+/* ── Use case cards ── */
+.uc-list { display: flex; flex-direction: column; gap: 8px; }
+.uc-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.uc-card:hover { border-color: var(--border-strong); }
+.uc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  cursor: pointer;
+}
+.uc-left { flex: 1; min-width: 0; }
+.uc-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.uc-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; line-height: 1.4; }
+.uc-preview { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.uc-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border-strong);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  padding: 0;
+  line-height: 1;
+}
+.uc-body {
+  padding: 0 18px 16px;
+  border-top: 0.5px solid var(--border);
+  margin: 0 18px;
+  padding-top: 14px;
+}
+.uc-field-label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-hint);
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+.uc-field-label:first-child { margin-top: 0; }
+.uc-field-text { font-size: 13px; color: var(--text); line-height: 1.65; }
+.uc-products { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.uc-customers { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.product-tag {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--surface2);
+  color: var(--text);
+  border: 0.5px solid var(--border-strong);
+  font-family: 'DM Mono', monospace;
+}
+.uc-actions { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+
+/* ── Modal ── */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 200;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  overflow-y: auto;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 540px;
+  position: relative;
+}
+.modal-title { font-size: 17px; font-weight: 500; margin-bottom: 20px; letter-spacing: -0.01em; }
+.form-row { margin-bottom: 14px; }
+.form-label { font-size: 11px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); display: block; margin-bottom: 5px; }
+.form-row input[type=text],
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 9px 12px;
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  max-width: 100%;
+  height: auto;
+}
+.form-row input[type=text]:focus,
+.form-row select:focus,
+.form-row textarea:focus { border-color: var(--blue-mid); background: var(--surface); }
+.form-row textarea { min-height: 72px; resize: vertical; }
+.ai-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.ai-box {
+  background: var(--blue-light);
+  border: 0.5px solid rgba(26,79,160,0.2);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.65;
+  margin-top: 10px;
+  white-space: pre-wrap;
+  display: none;
+}
+.ai-box.loading { color: var(--text-muted); font-style: italic; }
+.modal-footer { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; padding-top: 16px; border-top: 0.5px solid var(--border); }
+
+/* ── Empty state ── */
+.empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+  font-size: 14px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .hero-title { font-size: 26px; }
+  .domain-grid { grid-template-columns: 1fr; }
+  input[type=text] { max-width: 100%; }
+}
+
+/* ── Animations ── */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.uc-card { animation: fadeIn 0.18s ease both; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5" opacity="0.4"/></svg>
+      </div>
+      <div class="logo-text">Keysight <span>/ Use Case Library</span></div>
+    </div>
+    <div class="header-actions">
+      <button onclick="exportCSV()">Export CSV</button>
+      <button class="btn-primary" onclick="openAddModal()">+ Add use case</button>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-label">Commercial Accounts · Enterprise Vertical</div>
+    <h1 class="hero-title">Customer <strong>use case</strong><br>library</h1>
+    <p class="hero-sub">A searchable reference of enterprise customer problems and how Keysight products solved them — organized by domain and vertical.</p>
+  </div>
+
+  <div class="stats-row" id="stats-row"></div>
+
+  <div class="section-head">
+    <div class="section-title">Domains / verticals</div>
+  </div>
+  <div class="domain-grid" id="domain-grid"></div>
+
+  <div class="search-row">
+    <input type="text" id="search-input" placeholder="Search customers, products, problems..." oninput="renderAll()">
+    <div class="filter-bar" id="filter-bar" style="margin-bottom:0;flex:1"></div>
+  </div>
+
+  <div class="section-head">
+    <div class="section-title" id="uc-section-title">All use cases</div>
+    <div id="uc-count" style="font-size:12px;color:var(--text-muted)"></div>
+  </div>
+  <div class="uc-list" id="uc-list"></div>
+
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Add use case</div>
+    <div class="form-row">
+      <label class="form-label">Domain / vertical</label>
+      <select id="f-domain"></select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Customer name(s)</label>
+      <input type="text" id="f-customers" placeholder="e.g. Equinix, Digital Realty">
+    </div>
+    <div class="form-row">
+      <label class="form-label">Customer problem</label>
+      <textarea id="f-problem" placeholder="Describe the business or technical challenge..."></textarea>
+      <div class="ai-actions" style="margin-top:6px">
+        <button class="btn-sm" onclick="aiEnhance()">AI: sharpen problem ↗</button>
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Keysight products used</label>
+      <input type="text" id="f-products" placeholder="e.g. AresONE, IxNetwork, CyPerf">
+    </div>
+    <div class="form-row">
+      <label class="form-label">Solution &amp; outcome</label>
+      <textarea id="f-solution" placeholder="How Keysight solved it and what was the measurable result..."></textarea>
+      <div class="ai-actions" style="margin-top:6px">
+        <button class="btn-sm" onclick="aiGenerate()">AI: generate solution ↗</button>
+      </div>
+    </div>
+    <div id="ai-result" class="ai-box"></div>
+    <div class="modal-footer">
+      <button onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveUseCase()">Save use case</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DOMAINS = [
+  {id:'datacenter', name:'Data Center / Colocation', icon:'🏢', color:'blue', tags:['400G/800G validation','fabric testing','multi-tenant']},
+  {id:'saas', name:'SaaS / Internet', icon:'☁️', color:'teal', tags:['scale testing','app performance','global traffic']},
+  {id:'security', name:'Enterprise Security', icon:'🔒', color:'purple', tags:['attack simulation','zero trust','security validation']},
+  {id:'networking', name:'Networking / Infrastructure', icon:'🔗', color:'amber', tags:['protocol testing','device validation','automation']},
+  {id:'cloud', name:'Cloud Platform', icon:'⚡', color:'coral', tags:['cloud-native','high-scale','multi-cloud']},
+  {id:'financial', name:'Financial Services', icon:'💳', color:'green', tags:['low-latency','compliance','resiliency']},
+];
+
+let useCases = [
+  {id:1,domain:'datacenter',customers:['Equinix'],problem:'New data center fabric deployment required end-to-end validation of 400G infrastructure across multi-tenant colocation environments before go-live.',products:['AresONE','CloudStorm','IxNetwork','Novus'],solution:'Equinix deployed AresONE and CloudStorm for high-density traffic generation at 400G scale, using IxNetwork for protocol validation across their fabric. Novus enabled parallel line-rate testing across multiple racks, reducing validation cycles by 60%.',expanded:false},
+  {id:2,domain:'datacenter',customers:['Digital Realty'],problem:'Needed to validate multi-vendor switching fabric performance under real-world traffic conditions before accepting new hardware from vendors.',products:['AresONE','CloudStorm','IxNetwork'],solution:'Digital Realty used AresONE for stateful traffic simulation and CloudStorm to replicate production-like application mix, enabling vendor acceptance testing with measurable pass/fail benchmarks.',expanded:false},
+  {id:3,domain:'saas',customers:['eBay'],problem:'Global ecommerce platform required validation that infrastructure could handle peak traffic surges (10x normal load) without service degradation.',products:['AresONE','CloudStorm','IxNetwork','Novus'],solution:'eBay leveraged CloudStorm to simulate realistic global user traffic at scale, combined with AresONE for line-rate stress testing. Novus provided granular per-flow visibility, enabling confident capacity planning for peak shopping events.',expanded:false},
+  {id:4,domain:'saas',customers:['Dropbox'],problem:'Application performance validation across diverse global regions required tooling that could accurately simulate real-world file sync and collaboration workloads.',products:['IxChariot','IxLoad'],solution:'Dropbox used IxChariot to measure end-to-end application throughput and latency across network paths, with IxLoad providing protocol-level workload simulation for their file sync services.',expanded:false},
+  {id:5,domain:'security',customers:['A10 Networks'],problem:'Security product vendor needed continuous validation of their ADC and DDoS mitigation products under realistic and evolving attack traffic — both for internal QA and for customer-facing proof-of-concept demos.',products:['BreakingPoint','CyPerf','CloudStorm','IxLoad','IxNetwork'],solution:'A10 Networks built a full security validation lab using BreakingPoint for DDoS and exploit simulation, CyPerf for cloud-native attack traffic, and CloudStorm for sustained high-volume application load. This enabled automated regression testing and accelerated customer PoC delivery.',expanded:false},
+  {id:6,domain:'security',customers:['Dragos'],problem:'Industrial cybersecurity vendor required a realistic OT/IT environment to validate detection capabilities against advanced threat scenarios without risking production systems.',products:['BreakingPoint','CyPerf'],solution:'Dragos implemented BreakingPoint to generate ICS/SCADA attack traffic in an isolated lab, with CyPerf enabling cloud-based threat simulation. This validated detection coverage and reduced false positive rates before product releases.',expanded:false},
+  {id:7,domain:'security',customers:['eSentire'],problem:'Managed detection and response provider needed to validate SOC tooling and response playbooks against real-world attack simulations at scale.',products:['BreakingPoint','CyPerf'],solution:'eSentire used BreakingPoint to continuously replay threat scenarios and CyPerf to simulate distributed cloud attack patterns, enabling measurable MTTD/MTTR improvements and confidence in their detection coverage.',expanded:false},
+  {id:8,domain:'cloud',customers:['A10 Networks','Equinix'],problem:'High-scale cloud platform validation required testing that could replicate millions of concurrent sessions across hybrid and multi-cloud infrastructure.',products:['CloudStorm','Novus','AresONE'],solution:'CloudStorm provided the stateful session scale needed to simulate real cloud workloads, while AresONE and Novus delivered line-rate traffic across 100G/400G interfaces — enabling confident platform launches and SLA validation.',expanded:false},
+  {id:9,domain:'networking',customers:['EERO'],problem:'Consumer networking vendor needed to validate router firmware and Wi-Fi mesh performance under realistic household application traffic mixes before product release.',products:['IxChariot','IxLoad'],solution:'EERO used IxChariot for application-layer performance benchmarking across real-world traffic profiles, with IxLoad simulating concurrent streaming, gaming, and video call workloads to validate QoS policies.',expanded:false},
+];
+
+let nextId = 10;
+let selectedDomain = null;
+let editingId = null;
+
+function tagClass(color) { return 'tag tag-' + color; }
+
+function renderStats() {
+  const total = useCases.length;
+  const domains = new Set(useCases.map(u => u.domain)).size;
+  const customers = new Set(useCases.flatMap(u => u.customers)).size;
+  const products = new Set(useCases.flatMap(u => u.products)).size;
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Use cases</div><div class="stat-val">${total}</div></div>
+    <div class="stat-card"><div class="stat-label">Domains</div><div class="stat-val">${domains}</div></div>
+    <div class="stat-card"><div class="stat-label">Customers</div><div class="stat-val">${customers}</div></div>
+    <div class="stat-card"><div class="stat-label">Products</div><div class="stat-val">${products}</div></div>
+  `;
+}
+
+function matchesSearch(u, q) {
+  if (!q) return true;
+  const d = DOMAINS.find(x => x.id === u.domain) || { name: '' };
+  return u.customers.join(' ').toLowerCase().includes(q) ||
+    u.products.join(' ').toLowerCase().includes(q) ||
+    u.problem.toLowerCase().includes(q) ||
+    u.solution.toLowerCase().includes(q) ||
+    d.name.toLowerCase().includes(q);
+}
+
+function renderDomains() {
+  const q = (document.getElementById('search-input').value || '').toLowerCase();
+  document.getElementById('domain-grid').innerHTML = DOMAINS.map(d => {
+    const count = useCases.filter(u => u.domain === d.id && matchesSearch(u, q)).length;
+    return `<div class="domain-card${selectedDomain === d.id ? ' active' : ''}" onclick="selectDomain('${d.id}')">
+      <div class="domain-icon">${d.icon}</div>
+      <div class="domain-name">${d.name}</div>
+      <div class="domain-count">${count} use case${count !== 1 ? 's' : ''}</div>
+      <div class="domain-tags">${d.tags.map(t => `<span class="${tagClass(d.color)}">${t}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderFilterBar() {
+  document.getElementById('filter-bar').innerHTML =
+    `<span class="filter-label">Filter:</span>
+    <button class="chip${!selectedDomain ? ' active' : ''}" onclick="selectDomain(null)">All</button>
+    ${DOMAINS.map(d => `<button class="chip${selectedDomain === d.id ? ' active' : ''}" onclick="selectDomain('${d.id}')">${d.name}</button>`).join('')}`;
+}
+
+function selectDomain(id) {
+  selectedDomain = (selectedDomain === id ? null : id);
+  renderAll();
+}
+
+function renderUseCases() {
+  const q = (document.getElementById('search-input').value || '').toLowerCase();
+  let filtered = useCases.filter(u => matchesSearch(u, q));
+  if (selectedDomain) filtered = filtered.filter(u => u.domain === selectedDomain);
+  const domainName = selectedDomain ? (DOMAINS.find(d => d.id === selectedDomain) || { name: '' }).name : null;
+  document.getElementById('uc-section-title').textContent = domainName ? domainName + ' — use cases' : 'All use cases';
+  document.getElementById('uc-count').textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
+  if (!filtered.length) {
+    document.getElementById('uc-list').innerHTML = '<div class="empty">No use cases match your search.</div>';
+    return;
+  }
+  document.getElementById('uc-list').innerHTML = filtered.map(u => {
+    const d = DOMAINS.find(x => x.id === u.domain) || { color: 'blue', name: u.domain };
+    return `<div class="uc-card">
+      <div class="uc-top" onclick="toggleUC(${u.id})">
+        <div class="uc-left">
+          <div class="uc-meta-row">
+            <span class="${tagClass(d.color)}">${d.name}</span>
+            ${u.customers.map(c => `<span style="font-size:12px;color:var(--text-muted)">${c}</span>`).join('<span style="color:var(--text-hint)">·</span>')}
+          </div>
+          <div class="uc-title">${u.problem.substring(0, 100)}${u.problem.length > 100 ? '…' : ''}</div>
+          <div class="uc-preview">${u.products.slice(0, 5).join(' · ')}${u.products.length > 5 ? ' +' + (u.products.length - 5) + ' more' : ''}</div>
+        </div>
+        <button class="uc-toggle" onclick="event.stopPropagation();toggleUC(${u.id})">${u.expanded ? '−' : '+'}</button>
+      </div>
+      ${u.expanded ? `<div class="uc-body">
+        <div class="uc-field-label">Customer</div>
+        <div class="uc-customers">${u.customers.map(c => `<span class="${tagClass(d.color)}">${c}</span>`).join('')}</div>
+        <div class="uc-field-label">Problem</div>
+        <div class="uc-field-text">${u.problem}</div>
+        <div class="uc-field-label">Keysight products</div>
+        <div class="uc-products">${u.products.map(p => `<span class="product-tag">${p}</span>`).join('')}</div>
+        <div class="uc-field-label">Solution &amp; outcome</div>
+        <div class="uc-field-text">${u.solution}</div>
+        <div class="uc-actions">
+          <button class="btn-sm" onclick="editUseCase(${u.id})">Edit</button>
+          <button class="btn-sm" onclick="aiTalkingPoints(${u.id})">AI: channel talking points ↗</button>
+          <button class="btn-sm" style="color:#993c1d;border-color:rgba(153,60,29,0.3)" onclick="deleteUseCase(${u.id})">Delete</button>
+        </div>
+        ${u.talkingPoints ? `<div style="margin-top:12px;background:var(--blue-light);border:0.5px solid rgba(26,79,160,0.2);border-radius:var(--radius);padding:12px 14px;">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;color:var(--blue);margin-bottom:8px">Channel talking points</div>
+          <div style="font-size:13px;line-height:1.7;white-space:pre-wrap">${u.talkingPoints}</div>
+        </div>` : ''}
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function toggleUC(id) {
+  const u = useCases.find(x => x.id === id);
+  if (u) u.expanded = !u.expanded;
+  renderUseCases();
+}
+
+function renderAll() {
+  renderStats();
+  renderDomains();
+  renderFilterBar();
+  renderUseCases();
+}
+
+function openAddModal() {
+  editingId = null;
+  document.getElementById('modal-title').textContent = 'Add use case';
+  document.getElementById('f-domain').innerHTML = DOMAINS.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+  ['f-customers','f-problem','f-products','f-solution'].forEach(id => document.getElementById(id).value = '');
+  const box = document.getElementById('ai-result');
+  box.style.display = 'none';
+  box.className = 'ai-box';
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+
+function editUseCase(id) {
+  const u = useCases.find(x => x.id === id);
+  if (!u) return;
+  editingId = id;
+  document.getElementById('modal-title').textContent = 'Edit use case';
+  document.getElementById('f-domain').innerHTML = DOMAINS.map(d => `<option value="${d.id}"${d.id === u.domain ? ' selected' : ''}>${d.name}</option>`).join('');
+  document.getElementById('f-customers').value = u.customers.join(', ');
+  document.getElementById('f-problem').value = u.problem;
+  document.getElementById('f-products').value = u.products.join(', ');
+  document.getElementById('f-solution').value = u.solution;
+  const box = document.getElementById('ai-result');
+  box.style.display = 'none';
+  box.className = 'ai-box';
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+}
+
+function saveUseCase() {
+  const domain = document.getElementById('f-domain').value;
+  const customers = document.getElementById('f-customers').value.split(',').map(s => s.trim()).filter(Boolean);
+  const problem = document.getElementById('f-problem').value.trim();
+  const products = document.getElementById('f-products').value.split(',').map(s => s.trim()).filter(Boolean);
+  const solution = document.getElementById('f-solution').value.trim();
+  if (!customers.length || !problem) { alert('Customer name and problem are required.'); return; }
+  if (editingId) {
+    const u = useCases.find(x => x.id === editingId);
+    Object.assign(u, { domain, customers, problem, products, solution, expanded: false, talkingPoints: null });
+  } else {
+    useCases.push({ id: nextId++, domain, customers, problem, products, solution, expanded: false });
+  }
+  closeModal();
+  renderAll();
+}
+
+function deleteUseCase(id) {
+  if (!confirm('Delete this use case?')) return;
+  useCases = useCases.filter(x => x.id !== id);
+  renderAll();
+}
+
+async function callClaude(prompt) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  if (!res.ok) throw new Error('API error ' + res.status);
+  const data = await res.json();
+  return data.content.map(b => b.text || '').join('');
+}
+
+async function aiGenerate() {
+  const problem = document.getElementById('f-problem').value.trim();
+  const products = document.getElementById('f-products').value.trim();
+  const customers = document.getElementById('f-customers').value.trim();
+  if (!problem) { alert('Enter the customer problem first.'); return; }
+  const box = document.getElementById('ai-result');
+  box.style.display = 'block';
+  box.className = 'ai-box loading';
+  box.textContent = 'Generating solution with Claude...';
+  try {
+    const text = await callClaude(`You are a Keysight Technologies sales enablement expert. Write a concise 2-3 sentence solution and outcome for this enterprise use case. Be specific about product value and include a measurable result if possible.\n\nCustomer: ${customers}\nProblem: ${problem}\nKeysight Products: ${products}\n\nWrite only the solution/outcome text. No headings or preamble.`);
+    box.className = 'ai-box';
+    box.textContent = text.trim();
+    document.getElementById('f-solution').value = text.trim();
+  } catch(e) { box.className = 'ai-box'; box.textContent = 'Error: Could not reach the Claude API. Make sure you have configured your API key.'; }
+}
+
+async function aiEnhance() {
+  const problem = document.getElementById('f-problem').value.trim();
+  if (!problem) { alert('Enter the customer problem first.'); return; }
+  const box = document.getElementById('ai-result');
+  box.style.display = 'block';
+  box.className = 'ai-box loading';
+  box.textContent = 'Sharpening problem statement with Claude...';
+  try {
+    const text = await callClaude(`You are a Keysight Technologies sales engineer. Rewrite this customer problem statement to be more specific, technical, and compelling for a sales use case library. Keep it to 2 sentences max. Be concrete about the technical challenge.\n\nProblem: ${problem}\n\nWrite only the enhanced problem statement. No headings.`);
+    box.className = 'ai-box';
+    box.textContent = text.trim();
+    document.getElementById('f-problem').value = text.trim();
+  } catch(e) { box.className = 'ai-box'; box.textContent = 'Error: Could not reach the Claude API.'; }
+}
+
+async function aiTalkingPoints(id) {
+  const u = useCases.find(x => x.id === id);
+  if (!u) return;
+  const d = DOMAINS.find(x => x.id === u.domain) || { name: u.domain };
+  u.talkingPoints = 'Generating talking points with Claude...';
+  renderUseCases();
+  try {
+    const text = await callClaude(`You are a Keysight channel sales enablement expert. Generate 4 sharp, specific bullet-point talking points a channel partner can use when speaking with a prospect in the same industry as this customer. Make them conversational, insight-led, and focused on business outcomes — not product specs.\n\nDomain: ${d.name}\nCustomer: ${u.customers.join(', ')}\nProblem: ${u.problem}\nProducts: ${u.products.join(', ')}\nSolution: ${u.solution}\n\nOutput 4 bullet points only. Start each with a •`);
+    u.talkingPoints = text.trim();
+  } catch(e) { u.talkingPoints = 'Error: Could not reach the Claude API.'; }
+  renderUseCases();
+}
+
+function exportCSV() {
+  const rows = [['Domain','Customers','Problem','Products','Solution']];
+  useCases.forEach(u => {
+    const d = DOMAINS.find(x => x.id === u.domain) || { name: u.domain };
+    rows.push([d.name, u.customers.join('; '), u.problem, u.products.join('; '), u.solution]);
+  });
+  const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'keysight_use_case_library.csv';
+  a.click();
+}
+
+renderAll();
+</script>
+</body>
+</html>
